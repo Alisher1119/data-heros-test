@@ -29,7 +29,6 @@ import Card from "@/components/Card.vue";
 import Pagination from "@/components/Pagination.vue";
 import Filters from "@/components/Filters.vue";
 
-const defaultApi = 'https://rickandmortyapi.com/api/character';
 const defaultInfo: InfoInterface = {
   count: 0,
   pages: 0,
@@ -54,7 +53,7 @@ const fetchData = (params = {}) => {
     ...params
   }
 
-  axios.get(defaultApi, {params: defaultParams}).then((response) => {
+  axios.get(`${import.meta.env.VITE_API_ROOT}/character`, {params: defaultParams}).then((response) => {
     items.value = response.data?.results || [];
     info.value = response.data?.info || defaultInfo;
     errorMessage.value = '';
